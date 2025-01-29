@@ -8,18 +8,16 @@ Contributors:
 ## Description
 The goal of this project utilize the parameters extracted from the raw waveform time series data to train regression based models in order to predict the energy label variable. 
 
+Models selected in this project include: Ridge Regression Model, Polynomial Regression Model and Neural Networks.
+
 ## Installation Instructions
 How to clone the repository:
 ``` bash
 git clone https://github.com/axie0927/FindingGhostParticles-RegressionSubgroup.git
 ``` 
 
-## How to use the notebook?
-Download and put the MJD_TRAIN_PROCESSED in data folder
-Make sure it contains only one file(Will change this later)
-
 ## Parameters
-The parameters used in this investigation include:
+Below is a list of all the parameters extracted from the raw data as well as a brief description of them. 
 
 - **Drift Time** (tdrift.py): The time taken from the initiation of charge generation to the collection at the detector's point contact at increments of 10%, 50% and 99.9%.
 
@@ -47,6 +45,9 @@ The Master.py file combines all these parameters into one file.
 
 # Reproducing the Code
 The data can be downloaded at this [link](https://zenodo.org/records/8257027). There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository. The processed data can be found in this [Google Drive](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4).
+
+## How to use the notebook?
+Download the data at this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4) and put the MJD_TRAIN_PROCESSED in data folder before running the notebook. 
 
 ## Further Reading
 [Majorana Demonstrator Data Release Notes](https://arxiv.org/pdf/2308.10856)
