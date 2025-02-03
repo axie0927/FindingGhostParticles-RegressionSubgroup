@@ -8,7 +8,7 @@ Contributors:
 ## Description
 The goal of this project utilize the parameters extracted from the raw waveform time series data to train regression based models in order to predict the energy label variable. 
 
-Models selected in this project include: Ridge Regression Model, Polynomial Regression Model and Neural Networks.
+Models selected in this project include: Linear Regression Mode, Ridge Regression Model, SVM Regression Model and Neural Networks.
 
 ## Installation Instructions
 How to clone the repository:
