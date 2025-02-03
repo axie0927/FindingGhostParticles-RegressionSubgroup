@@ -1,8 +1,8 @@
 # %%
 import pandas as pd
-PROCESSED_MJD_NPML = pd.read_csv('/Users/marcosanchez/MajoranaHunt/ProcessedData/PROCESSED_MJD_NPML.csv')
-PROCESSED_MJD_TEST = pd.read_csv('/Users/marcosanchez/MajoranaHunt/ProcessedData/PROCESSED_MJD_TEST.csv')
-PROCESSED_MJD_TRAIN = pd.read_csv('/Users/marcosanchez/MajoranaHunt/ProcessedData/PROCESSED_MJD_TRAIN.csv')
+PROCESSED_MJD_NPML = pd.read_csv('/Data/PROCESSED_MJD_NPML.csv')
+PROCESSED_MJD_TEST = pd.read_csv('/Data/PROCESSED_MJD_TEST.csv')
+PROCESSED_MJD_TRAIN = pd.read_csv('/Data/PROCESSED_MJD_TRAIN.csv')
 
 print(PROCESSED_MJD_NPML['id'].duplicated().sum())
 PROCESSED_MJD_NPML = PROCESSED_MJD_NPML.drop_duplicates(subset = ['id'])
