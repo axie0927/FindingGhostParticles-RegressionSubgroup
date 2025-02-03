@@ -16,6 +16,12 @@ How to clone the repository:
 git clone https://github.com/axie0927/FindingGhostParticles-RegressionSubgroup.git
 ``` 
 
+## Models
+
+- **Baseline Model** (Ridge Regression): We used a Ridge Regression Model for our baseline due to the simplicity of the model. 
+- **Polynomial Regression**
+- **Neural Network**
+
 ## Parameters
 Below is a list of all the parameters extracted from the raw data as well as a brief description of them. 
 
