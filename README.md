@@ -16,6 +16,10 @@ How to clone the repository:
 git clone https://github.com/axie0927/FindingGhostParticles-RegressionSubgroup.git
 ``` 
 
+## Exploratory Data Analysis
+
+We performed an EDA on the processed data to figure out which features would be the best the use in our model training. This EDA utilizes a subset of the larger training data set.
+
 ## Models
 
 - **Baseline Model** (Linear Regression): We used a Linear Regression model for our baseline due to the simplicity of the model as well as the strong linear relationship between our feature variables and target variable. 
@@ -51,7 +55,7 @@ Below is a list of all the parameters extracted from the raw data as well as a b
 
 - **Fourier Transform and Low Frequency Power Ratio** (fourier_lfpr.py): The Fourier Transform is a mathematical operation that transforms a time-domain signal into its frequency-domain representation. Low Frequency Power Ratio (LFPR) is used, quantifying how much of the signal’s energy is concentrated in the low-frequency threshold by the total power spectrum of the Fourier transformed waveform.  
 
-The Master.py file combines all these parameters into one file.
+The Master.py file combines all these parameters into one file. Remove_Duplicates.py removes all duplicate rows in the processed files. 
 
 ## Reproducing the Code
 The data can be downloaded at this [link](https://zenodo.org/records/8257027). There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository. The processed data can be found in this [Google Drive](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4).
