@@ -19,8 +19,9 @@ git clone https://github.com/axie0927/FindingGhostParticles-RegressionSubgroup.g
 ## Models
 
 - **Baseline Model** (Linear Regression): We used a Linear Regression Model for our baseline due to the simplicity of the model as well as the strong linear relationship between our feature variables and target variable. 
-- **Ridge Regression**
-- **Neural Network**
+- **Ridge Regression Model**
+- **SVM Model** 
+- **Neural Network Model**
 
 ## Parameters
 Below is a list of all the parameters extracted from the raw data as well as a brief description of them. 
