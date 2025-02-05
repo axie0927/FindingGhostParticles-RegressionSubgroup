@@ -18,15 +18,17 @@ git clone https://github.com/axie0927/FindingGhostParticles-RegressionSubgroup.g
 
 ## Exploratory Data Analysis
 
-We performed an EDA on the processed data to figure out which features would be the best the use in our model training. This EDA utilizes a subset of the larger training data set.
+We performed an EDA on the processed data to figure out which features would be the best the use in our model training. This EDA utilizes a subset of the larger training data set, this file can be found named 'results.csv'. Note that it will not be used in the model building and we will be using the full data set for training.
 
 ## Models
 
-- **Baseline Model** (Linear Regression): We used a Linear Regression model for our baseline due to the simplicity of the model as well as the strong linear relationship between our feature variables and target variable. 
+- **Linear Regression Model (Baseline Model)**
 
-- **Ridge Regression Model**: Ridge Regression is very much like a Linear Regression model with a regularizer which helps make the model more robust. 
+- **Ridge Regression Model**
 
-- **SVM Regression Model** 
+- **SVM Regression Model**
+
+- **Random Forest Regressor Model**
 
 - **Neural Network Model**
 
@@ -61,7 +63,7 @@ The Master.py file combines all these parameters into one file. Remove_Duplicate
 The data can be downloaded at this [link](https://zenodo.org/records/8257027). There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository. The processed data can be found in this [Google Drive](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4).
 
 ## How to use the notebook?
-Download the data at this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), put the MJD_TRAIN_PROCESSED and MJD_TEST_PROCESSED in the Data folder under src before running the notebook. 
+Download the data at this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), put the MJD_TRAIN_PROCESSED and MJD_TEST_PROCESSED in the 'Data' folder under src before running the notebook. 
 
 ## Further Reading
 [Majorana Demonstrator Data Release Notes](https://arxiv.org/pdf/2308.10856)
