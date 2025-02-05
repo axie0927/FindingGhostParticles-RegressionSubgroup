@@ -63,7 +63,7 @@ The Master.py file combines all these parameters into one file. Remove_Duplicate
 The data can be downloaded at this [link](https://zenodo.org/records/8257027). There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository. The processed data can be found in this [Google Drive](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4).
 
 ## How to use the notebook?
-Download the data at this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), put the MJD_TRAIN_PROCESSED and MJD_TEST_PROCESSED in the 'Data' folder under src before running the notebook. 
+Download the data at this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), put the MJD_TRAIN_PROCESSED and MJD_TEST_PROCESSED in the 'Data' folder under src/Models before running the notebook. 
 
 ## Further Reading
 [Majorana Demonstrator Data Release Notes](https://arxiv.org/pdf/2308.10856)
