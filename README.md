@@ -5,10 +5,12 @@ Contributors:
 - Ammie Xie
 - Haotian Zhu
 
+This repository is made for the checkpoint submission, further work will be merged and pushed to the main repository found [here](https://github.com/matthewsegovia/MajoranaNeutrinoHunt/tree/main).
+
 ## Description
 The goal of this project utilize the parameters extracted from the raw waveform time series data to train regression based models in order to predict the energy label variable. 
 
-Models selected in this project include: Linear Regression Model, Ridge Regression Model, SVM Regression Model and Neural Networks.
+Models selected in this project include: Linear Regression Model, Ridge Regression Model, SVM Regression Model, Random Forest Regressor, and Neural Networks.
 
 ## Installation Instructions
 How to clone the repository:
@@ -21,6 +23,8 @@ git clone https://github.com/axie0927/FindingGhostParticles-RegressionSubgroup.g
 We performed an EDA on the processed data to figure out which features would be the best the use in our model training. This EDA utilizes a subset of the larger training data set, this file can be found named 'results.csv'. Note that it will not be used in the model building and we will be using the full data set for training.
 
 ## Models
+
+Below is a list of models we built that are trained on our processed data (MJD_TRAIN_PROCESSED).
 
 - **Linear Regression Model (Baseline Model)**
 
