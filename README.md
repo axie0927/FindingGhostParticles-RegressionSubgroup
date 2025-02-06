@@ -5,7 +5,7 @@ Contributors:
 - Ammie Xie
 - Haotian Zhu
 
-This repository is made for the checkpoint submission, further work will be merged and pushed to the main repository found [here](https://github.com/matthewsegovia/MajoranaNeutrinoHunt/tree/main).
+This repository is created for the checkpoint submission, further work will be merged and pushed to the main repository found [here](https://github.com/matthewsegovia/MajoranaNeutrinoHunt/tree/main).
 
 ## Description
 The goal of this project utilize the parameters extracted from the raw waveform time series data to train regression based models in order to predict the energy label variable. 
