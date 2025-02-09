@@ -19,14 +19,14 @@ git clone https://github.com/axie0927/FindingGhostParticles-RegressionSubgroup.g
 ```
 
 ## Anaconda Environemnt Instructions
-In order to clone the dependencies needed for our project, please follow the steps below. Make sure you have Anaconda installed.
+In order to clone the dependencies needed for our project, please follow the steps below. Make sure you have Anaconda installed.<br>
 Step 1: Replace "name_of_environment" with a name you like:
 ``` bash
-conda env create -f environment.yml --name *name_of_environment*
+conda env create -f environment.yml --name name_of_environment
 ```
 Step 2: Activate the environment:
 ``` bash
-conda activate *name_of_environment*
+conda activate name_of_environment
 ```
 
 ## Exploratory Data Analysis
