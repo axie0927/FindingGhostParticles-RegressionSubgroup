@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[38]:
 
 
 import pandas as pd
@@ -12,16 +12,21 @@ from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import StandardScaler
 import os
 from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error
+import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 
 
-# In[2]:
+# In[39]:
 
 
 # I don't know if we can use the GPUs on DSMLP to utilize the CUDA function of Pytorch
 # So do not set epoch too high in order to have a faster training process.
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Using device:", device)
 
-# In[3]:
+
+# In[40]:
 
 
 # create varaibles that holds a dataframe
@@ -60,7 +65,7 @@ y_train = train_df['energylabel'].values.reshape(-1,1)
 y_test = test_df['energylabel'].values.reshape(-1,1)
 
 
-# In[4]:
+# In[41]:
 
 
 #####################################################################################
@@ -87,7 +92,7 @@ print(test_df.isnull().sum())
 pass
 
 
-# In[5]:
+# In[42]:
 
 
 # Standardization
@@ -101,7 +106,7 @@ y_train = scaler_y.fit_transform(y_train)
 y_test = scaler_y.transform(y_test)
 
 
-# In[6]:
+# In[43]:
 
 
 # Convert to Pytorch Tensor
@@ -112,7 +117,7 @@ X_test_tensor = torch.tensor(X_test, dtype=torch.float32)
 y_test_tensor = torch.tensor(y_test, dtype=torch.float32)
 
 
-# In[7]:
+# In[44]:
 
 
 # Define dataloader
@@ -136,7 +141,7 @@ train_loader = DataLoader(train_NPDL, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(test_NPDL, batch_size=batch_size, shuffle=False)
 
 
-# In[8]:
+# In[45]:
 
 
 # Public Static int main!
@@ -146,17 +151,20 @@ class SuperPredictor(nn.Module):
         super(SuperPredictor, self).__init__()
         self.fc1 = nn.Linear(input_size, 64)
         self.fc2 = nn.Linear(64, 32)
-        self.fc3 = nn.Linear(32, 1) 
-        self.relu = nn.ReLU()
+        self.fc3 = nn.Linear(32, 16)  
+        self.out = nn.Linear(16, 1)
         
+        self.relu = nn.ReLU()
+
     def forward(self, x):
         x = self.relu(self.fc1(x))
         x = self.relu(self.fc2(x))
-        x = self.fc3(x)
+        x = self.relu(self.fc3(x))  
+        x = self.out(x)
         return x
     
-input_size = 12 # the number of our features
-model = SuperPredictor(input_size)
+input_size = X_train.shape[1]
+model = SuperPredictor(input_size).to(device)
 
 accuracy = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -165,48 +173,165 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     
 
 
-# In[9]:
+# In[46]:
 
 
-# Set epoch to 100 is good, but my computer is trash, you can do it on DSMLP.
-num_epochs = 20 # Change this later according to our Computational Power!!  
+# Set epoch to 100 is good, but my computer is trash. DSMLP with c8m32 is even 10x slower than my laptop :)
+num_epochs = 30 
+
 for epoch in range(num_epochs):
-    model.train()  
+    model.train()
     running_loss = 0.0
+    
     for X_batch, y_batch in train_loader:
-        optimizer.zero_grad()           
-        outputs = model(X_batch)          
-        loss = accuracy(outputs, y_batch) 
-        loss.backward()                 
-        optimizer.step()                
-
-        running_loss += loss.item() * X_batch.size(0)
-    epoch_loss = running_loss / len(train_NPDL)
-    #if (epoch+1) % 10 == 0:
-    print(f"Epoch [{epoch+1}/{num_epochs}], Scaled Loss(standardization): {epoch_loss:.4f}")
+        optimizer.zero_grad()
+        outputs = model(X_batch)
+        loss = criterion(outputs, y_batch)
+        loss.backward()
+        optimizer.step()
         
+        running_loss += loss.item() * X_batch.size(0)
+    
+    train_loss = running_loss / len(train_dataset)
+    
+    model.eval()
+    with torch.no_grad():
+        ######################################################################################
+        # Evaluate on test set, only for tuning things like learning rates and batchsizes.    #
+        ######################################################################################
+        test_predictions = model(X_test_tensor)
+        test_loss_val = criterion(test_predictions, y_test_tensor).item()
+        
+    print(f"Epoch [{epoch+1}/{num_epochs}] "
+          f"Train Loss: {train_loss:.4f}, Test Loss(For tuning): {test_loss_val:.4f}")
 
-model.eval()  # set the model to evaluation mode
+
+
+model.eval()
 with torch.no_grad():
-    predictions = model(X_test_tensor)
-    test_loss = accuracy(predictions, y_test_tensor)
-    print(f"Test Loss(Scaled): {test_loss.item():.4f}")
+    X_test_device = X_test_tensor.to(device)
+    y_test_device = y_test_tensor.to(device)
+    predictions = model(X_test_device)
+    
+    final_test_loss = criterion(predictions, y_test_device).item()
+    print(f"Final Test MSE (scaled): {final_test_loss:.4f}")
+
+
+predictions_np = predictions.cpu().numpy()  
+y_test_np      = y_test_device.cpu().numpy()
+
+predictions_original = scaler_y.inverse_transform(predictions_np)
+y_test_original      = scaler_y.inverse_transform(y_test_np)
+
+MSE = mean_squared_error(y_test_original, predictions_original)
+MAE = mean_absolute_error(y_test_original, predictions_original)
+r2  = r2_score(y_test_original, predictions_original)
+
+print(f"Final Results on Test Data:")
+print(f"MSE: {MSE:.4f}")
+print(f"MAE: {MAE:.4f}")
+print(f"R^2: {r2:.4f}")
 
       
 
 
-# In[10]:
-
-
-predictions_original = scaler_y.inverse_transform(predictions.numpy())
-y_test_original = scaler_y.inverse_transform(y_test_tensor.numpy())
-
-
-MSE = mean_squared_error(y_test_original, predictions_original)
-MAE = mean_absolute_error(y_test_original, predictions_original)
-r2 = r2_score(y_test_original, predictions_original)
-
-print(f"MSE: {MSE}, Average Residuals: {MAE}, Variance Explained: {r2}")
-
-
 # Here we can see that MSE is the lowest out of all our models, this may be our best performing model.
+
+# In[78]:
+
+
+residuals = predictions_original.flatten() - y_test_original.flatten()
+
+sns.set_style("whitegrid")   
+sns.set_context("talk")      
+plt.figure(figsize=(8, 8))
+
+scatter = plt.scatter(
+    x=y_test_original.flatten(),
+    y=predictions_original.flatten(),
+    c=residuals,              
+    cmap="coolwarm",          
+    alpha=0.7,                
+    edgecolors="black",
+    s=80                      
+)
+
+cbar = plt.colorbar(scatter, pad=0.01)
+cbar.set_label("Residual (Predicted - Actual)")
+
+# 45-degree reference line for perfect predictions
+min_val = min(y_test_original.min(), predictions_original.min())
+max_val = max(y_test_original.max(), predictions_original.max())
+plt.plot([min_val, max_val], [min_val, max_val], 'k--', linewidth=2)
+
+plt.xlabel("Actual Values")
+plt.ylabel("Predicted Values")
+plt.title("Predicted vs. Actual")
+
+plt.tight_layout()
+plt.savefig("NN_Predicted_vs_Actual.png", dpi=300, bbox_inches="tight")
+plt.show()
+
+
+# In[79]:
+
+
+sns.set(style="whitegrid", context="talk")
+residuals = predictions_original.flatten() - y_test_original.flatten()
+# mean and std of residuals
+residual_mean = np.mean(residuals)
+residual_std = np.std(residuals)
+
+sns.set(style="whitegrid", context="talk")
+
+plt.figure(figsize=(8, 6))
+
+sns.histplot(residuals, kde=True, label="Residual Distr.")
+
+dashed_line = mlines.Line2D(
+    [], [], 
+    color="#4C72B0",  # match Seaborn's default blue
+    linestyle="-",
+    linewidth=2,
+    label="KDE Dashed"
+)
+
+handles, labels = plt.gca().get_legend_handles_labels()
+handles.append(dashed_line)
+labels.append("KDE")
+
+plt.legend(handles, labels, loc="upper right")
+
+plt.axvline(0, color='red', linestyle='--', linewidth=2)
+plt.xlim(-100, 100)
+plt.xlabel("Residuals")
+plt.title("Distribution of Residuals")
+props = dict(boxstyle='round', facecolor='white', alpha=0.8)
+textstr = (f"Mean Residual: {residual_mean:.2f}\n"
+           f"Std Dev: {residual_std:.2f}")
+plt.text(0.98, 0.75, textstr, transform=plt.gca().transAxes,
+         fontsize=12, verticalalignment='top', horizontalalignment='right',
+         bbox=props)
+
+plt.tight_layout()
+plt.savefig("NN_Distribution_Residual", dpi=300, bbox_inches="tight")
+plt.show()
+
+
+# In[81]:
+
+
+#len(residuals)
+
+
+# In[82]:
+
+
+#np.save("NN_result.npy", residuals)
+
+
+# In[ ]:
+
+
+
+
