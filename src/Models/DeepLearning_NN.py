@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[38]:
+# In[23]:
 
 
 import pandas as pd
@@ -14,9 +14,10 @@ import os
 from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
+import seaborn as sns
 
 
-# In[39]:
+# In[11]:
 
 
 # I don't know if we can use the GPUs on DSMLP to utilize the CUDA function of Pytorch
@@ -26,7 +27,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
 
 
-# In[40]:
+# In[12]:
 
 
 # create varaibles that holds a dataframe
@@ -65,7 +66,7 @@ y_train = train_df['energylabel'].values.reshape(-1,1)
 y_test = test_df['energylabel'].values.reshape(-1,1)
 
 
-# In[41]:
+# In[13]:
 
 
 #####################################################################################
@@ -92,7 +93,7 @@ print(test_df.isnull().sum())
 pass
 
 
-# In[42]:
+# In[14]:
 
 
 # Standardization
@@ -106,7 +107,7 @@ y_train = scaler_y.fit_transform(y_train)
 y_test = scaler_y.transform(y_test)
 
 
-# In[43]:
+# In[15]:
 
 
 # Convert to Pytorch Tensor
@@ -117,7 +118,7 @@ X_test_tensor = torch.tensor(X_test, dtype=torch.float32)
 y_test_tensor = torch.tensor(y_test, dtype=torch.float32)
 
 
-# In[44]:
+# In[16]:
 
 
 # Define dataloader
@@ -141,7 +142,7 @@ train_loader = DataLoader(train_NPDL, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(test_NPDL, batch_size=batch_size, shuffle=False)
 
 
-# In[45]:
+# In[17]:
 
 
 # Public Static int main!
@@ -173,7 +174,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     
 
 
-# In[46]:
+# In[20]:
 
 
 # Set epoch to 100 is good, but my computer is trash. DSMLP with c8m32 is even 10x slower than my laptop :)
@@ -192,7 +193,7 @@ for epoch in range(num_epochs):
         
         running_loss += loss.item() * X_batch.size(0)
     
-    train_loss = running_loss / len(train_dataset)
+    train_loss = running_loss / len(train_NPDL)
     
     model.eval()
     with torch.no_grad():
@@ -237,7 +238,7 @@ print(f"R^2: {r2:.4f}")
 
 # Here we can see that MSE is the lowest out of all our models, this may be our best performing model.
 
-# In[78]:
+# In[29]:
 
 
 residuals = predictions_original.flatten() - y_test_original.flatten()
@@ -273,7 +274,7 @@ plt.savefig("NN_Predicted_vs_Actual.png", dpi=300, bbox_inches="tight")
 plt.show()
 
 
-# In[79]:
+# In[30]:
 
 
 sns.set(style="whitegrid", context="talk")
@@ -318,7 +319,7 @@ plt.savefig("NN_Distribution_Residual", dpi=300, bbox_inches="tight")
 plt.show()
 
 
-# In[81]:
+# In[1]:
 
 
 #len(residuals)
@@ -328,10 +329,4 @@ plt.show()
 
 
 #np.save("NN_result.npy", residuals)
-
-
-# In[ ]:
-
-
-
 
