@@ -166,7 +166,7 @@ class SuperPredictor(nn.Module):
 input_size = X_train.shape[1]
 model = SuperPredictor(input_size).to(device)
 
-accuracy = nn.MSELoss()
+criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 
