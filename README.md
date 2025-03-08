@@ -29,10 +29,13 @@ conda env create -f environment.yml --name name_of_environment
 ``` bash
 conda activate name_of_environment
 ```
+### Step 3: Download the Proprocessed Dataset or Preprocess your own raw Data:
+#### Option 1: Download the preprocessed dataset(Recommended):
+1. Download the data from this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), place all the csv files in the 'Data' folder under `src/Models` before running the .py files.
+2. (Optional): If you would like to use the notebooks located at `src/Models/Notebooks`, also place the files from the link above in the 'Data' folder under `src/Models/Notebooks`.
+#### Option 2: Proprocess your own data:
+There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository.
 
-## Exploratory Data Analysis
-
-We performed an EDA on the processed data to figure out which features would be the best the use in our model training. This EDA utilizes a subset of the larger training data set, this file can be found named 'results.csv'. Note that it will not be used in the model building and we will be using the full data set for training.
 
 ## Models
 
@@ -75,11 +78,13 @@ Below is a list of all the parameters extracted from the raw data as well as a b
 
 The Master.py file combines all these parameters into one file. Remove_Duplicates.py removes all duplicate rows in the processed files. 
 
+## Exploratory Data Analysis
+
+We performed an EDA on the processed data to figure out which features would be the best the use in our model training. This EDA utilizes a subset of the larger training data set, this file can be found named 'results.csv'. Note that it will not be used in the model building and we will be using the full data set for training.
+
 ## Reproducing The Code
 The data can be downloaded at this [link](https://zenodo.org/records/8257027). There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository. The processed data can be found in this [Google Drive](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4).
-
-## How To Use The Notebook?
-Download the data at this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), put the MJD_TRAIN_PROCESSED and MJD_TEST_PROCESSED in the 'Data' folder under src/Models before running the notebook. 
+ 
 
 ## Further Reading
 [Majorana Demonstrator Data Release Notes](https://arxiv.org/pdf/2308.10856)
