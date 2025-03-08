@@ -33,7 +33,8 @@ conda activate name_of_environment
 #### Option 1: Download the preprocessed dataset(Recommended):
 1. Download the preprocessed data from this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), place all the csv files in the 'Data' folder under `src/Models` before running the .py files.
 2. (Optional): If you would like to use the notebooks located at `src/Models/Notebooks`, also place the files from the link above in the 'Data' folder under `src/Models/Notebooks`.
-<br>
+
+
 #### Option 2: Proprocess your own data:
 There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository.
 1. Download the raw data at this [link](https://zenodo.org/records/8257027).
@@ -60,7 +61,7 @@ cd src/Models
 ``` bash
 python3 the_model_you_like.py
 ```
-### Now follows the instructions in your terminal 😉
+After finishing the step above, please see your terminal for the results and guides 😉
 
 
 ## Models
