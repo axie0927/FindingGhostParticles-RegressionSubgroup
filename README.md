@@ -31,10 +31,23 @@ conda activate name_of_environment
 ```
 ### Step 3: Download the Proprocessed Dataset or Preprocess your own raw Data:
 #### Option 1: Download the preprocessed dataset(Recommended):
-1. Download the data from this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), place all the csv files in the 'Data' folder under `src/Models` before running the .py files.
-2. (Optional): If you would like to use the notebooks located at `src/Models/Notebooks`, also place the files from the link above in the 'Data' folder under `src/Models/Notebooks`.
+##### 1. Download the data from this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), place all the csv files in the 'Data' folder under `src/Models` before running the .py files.
+##### 2. (Optional): If you would like to use the notebooks located at `src/Models/Notebooks`, also place the files from the link above in the 'Data' folder under `src/Models/Notebooks`.
+
 #### Option 2: Proprocess your own data:
 There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository.
+##### 1. Download the data at this [link](https://zenodo.org/records/8257027).
+##### 2. Create a directory at `src/Parameter Extraction` and rename it 'data', place all the raw data in it.
+##### 3. Run the code below in your terminal:
+``` bash
+cd src/Parameter\ Extraction
+```
+``` bash
+python3 Master.py
+```
+##### 4. Place all the generated csv files in the 'Data' folder under `src/Models` before running the .py files.
+##### 5. (Optional): If you would like to use the notebooks located at `src/Models/Notebooks`, also place the files from the link above in the 'Data' folder under `src/Models/Notebooks`.
+
 
 
 ## Models
