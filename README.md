@@ -76,7 +76,7 @@ Below is a list of models we built that are trained on our processed data (MJD_T
 
 - **Random Forest Regressor Model**
 
-- **Neural Network Model**
+- **Neural Network Model (Final Model)**
 
 ## Parameters
 Below is a list of all the parameters extracted from the raw data as well as a brief description of them. 
