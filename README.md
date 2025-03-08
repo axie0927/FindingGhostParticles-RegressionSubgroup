@@ -57,7 +57,7 @@ python3 Master.py
 ``` bash
 cd src/Models
 ```
-#### 2. Execute your desired model(**replace `the_model_you_like.py` with the true model name**):
+#### 2. Replace `the_model_you_like.py` with the true model name:
 ``` bash
 python3 the_model_you_like.py
 ```
