@@ -109,6 +109,41 @@ The Master.py file combines all these parameters into one file. Remove_Duplicate
 
 We performed an EDA on the processed data to figure out which features would be the best the use in our model training. This EDA utilizes a subset of the larger training data set, this file can be found named 'results.csv'. Note that it will not be used in the model building and we will be using the full data set for training.
 
+## File Explanation
+root/
+- src/
+  - Models/
+    - Baseline_Model.py: Linear Regression
+    - Ridge_Regression_Model.py: Ridge Regression
+    - RF_Regressor_Model.py: Random Forest Regression 
+    - SVM_Model.py: Support Vector Machine Regression
+    - DeepLearning_NN.py: Neural Network(**Best**)
+    - Data/
+      - npml_cut.csv: Classification result from B10-2 (We are B10-1)
+    - Notebooks/
+      - Baseline_Model.ipynb: Linear Regression
+      - Ridge_Regression_Model.ipynb: Ridge Regression
+      - RF_Regressor_Model.ipynb: Random Forest Regression 
+      - SVM_Model.ipynb: Support Vector Machine Regression
+      - DeepLearning_NN.ipynb: Neural Network(**Best**)
+      - Final Test.ipynb: For testing NN
+      - Final Test_overfitting.ipynb: Test that aims on mitigating overfitting
+      - Plots.ipynb: Generating combined or NPML dataset only Full Energy Spectrum and Energy spectrum after cut
+      - Data/
+        - npml_cut.csv: Classification result from B10-2 (We are B10-1)
+  - EDA/
+    - EDA.ipynb: Notebook for exploratory Analysis
+    - results.csv: Necessary dataset for our EDA
+  - Parameter Extraction/
+    - Master.py: Main python file to extract feature from raw dataset
+    - Remove_Duplicates.py: As its name suggests, ignore this file since we've already done this
+    - Parameter-functions/: Parameter extraction files needed for Mater.py
+  - assets/: Ignore this folder, needed for storing other files
+- README.md
+- Analysis_Unidoc.pdf: Copy of our report
+- environment.yml: Anaconda Environment file
+- requirements.yml: Substitute of environment.yml(Deprecated)
+
  
 
 ## Further Reading
