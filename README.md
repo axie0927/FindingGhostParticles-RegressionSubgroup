@@ -5,7 +5,7 @@ Contributors:
 - Ammie Xie
 - Haotian Zhu
 
-This repository is created for the checkpoint submission, further work will be merged and pushed to the main repository found [here](https://github.com/matthewsegovia/MajoranaNeutrinoHunt/tree/main).
+Our Website can be found here: https://zhtdbb1.github.io/FindingGhostParticles-Website/
 
 ## Description
 The goal of this project utilize the parameters extracted from the raw waveform time series data to train regression based models in order to predict the energy label variable. 
@@ -31,13 +31,13 @@ conda activate name_of_environment
 ```
 ### Step 3: Download the Proprocessed Dataset or Preprocess your own raw Data:
 #### Option 1: Download the preprocessed dataset(Recommended):
-1. Download the data from this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), place all the csv files in the 'Data' folder under `src/Models` before running the .py files.
+1. Download the preprocessed data from this [link](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4), place all the csv files in the 'Data' folder under `src/Models` before running the .py files.
 2. (Optional): If you would like to use the notebooks located at `src/Models/Notebooks`, also place the files from the link above in the 'Data' folder under `src/Models/Notebooks`.
-
+<br>
 #### Option 2: Proprocess your own data:
 There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository.
-1. Download the data at this [link](https://zenodo.org/records/8257027).
-2. Create a directory at `src/Parameter Extraction` and rename it 'data', place all the raw data in it.
+1. Download the raw data at this [link](https://zenodo.org/records/8257027).
+2. Create a directory at `src/Parameter Extraction` and name it 'data', place all the raw data in it.
 3. Run the code below in your terminal:
 ``` bash
 cd src/Parameter\ Extraction
@@ -52,8 +52,15 @@ python3 Master.py
 > **⚠️ Warning:** Make sure there are 4 files in the data folder -- `MJD_NPML_PCOCESSED.csv`,`MJD_TEST_PCOCESSED.csv`, `MJD_Train_PCOCESSED.csv`,`npml_cut.csv`. Where `npml_cut.csv` is the predictions of classification group.
 > 
 > **❗ Important:** `DeepLearning_NN.py` is our best final Model,not only it is applied on test set but also generates the predictions on NPML dataset which is the real world data without known true value, the others are applied only on test set for reference.
-
-
+#### 1. Move to the Models directory:
+``` bash
+cd src/Models
+```
+#### 2. Execute your desired model(**replace `the_model_you_like.py` with the true model name**):
+``` bash
+python3 the_model_you_like.py
+```
+### Now follows the instructions in your terminal 😉
 
 
 ## Models
@@ -101,8 +108,6 @@ The Master.py file combines all these parameters into one file. Remove_Duplicate
 
 We performed an EDA on the processed data to figure out which features would be the best the use in our model training. This EDA utilizes a subset of the larger training data set, this file can be found named 'results.csv'. Note that it will not be used in the model building and we will be using the full data set for training.
 
-## Reproducing The Code
-The data can be downloaded at this [link](https://zenodo.org/records/8257027). There are 25 different data files, and this data is not processed. In order to extract parameters from the data, download the raw data and run the Master.py script located in the src folder of the repository. The src folder also contains a parameter-functions folder with each parameter extraction function separately defined. Due to the large size of the data files, the processed data will not be kept in this repository. The processed data can be found in this [Google Drive](https://drive.google.com/drive/folders/1SnmQemcXWPvKvJBmGkd0hSqTQ8gbs0C4).
  
 
 ## Further Reading
