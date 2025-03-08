@@ -12,19 +12,20 @@ The goal of this project utilize the parameters extracted from the raw waveform 
 
 Models selected in this project include: Linear Regression Model, Ridge Regression Model, SVM Regression Model, Random Forest Regressor, and Neural Networks.
 
-## Installation Instructions
+## Getting Started
+
+### Step 1: Installation Instructions
 How to clone the repository:
 ``` bash
 git clone https://github.com/axie0927/FindingGhostParticles-RegressionSubgroup.git
 ```
-
-## Anaconda Environemnt Instructions
 In order to clone the dependencies needed for our project, please follow the steps below. Make sure you have Anaconda installed.<br><br>
-#### Step 1: Replace `name_of_environment` with a name you like:
+### Step 2: Anaconda Environemnt Instructions
+#### 1. Replace `name_of_environment` with a name you like:
 ``` bash
 conda env create -f environment.yml --name name_of_environment
 ```
-#### Step 2: Activate the environment:
+#### 2. Activate the environment:
 ``` bash
 conda activate name_of_environment
 ```
