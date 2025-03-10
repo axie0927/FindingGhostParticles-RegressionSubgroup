@@ -140,7 +140,6 @@ root/
     - Parameter-functions/: Parameter extraction files needed for Mater.py
   - assets/: Ignore this folder, needed for storing other files
 - README.md
-- Analysis_Unidoc.pdf: Copy of our report
 - environment.yml: Anaconda Environment file
 - requirements.yml: Substitute of environment.yml(Deprecated)
 
